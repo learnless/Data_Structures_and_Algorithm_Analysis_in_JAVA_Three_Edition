@@ -126,19 +126,6 @@ public class MyLinkedList<T extends Comparable<? super T>> implements Iterable<T
         return false;
     }
 
-    public void sort() {
-        //采用冒泡排序，效率低
-        for (Node<T> t = head.next; t.next != null; t = t.next) {
-            for (Node<T> k = t; k != null; k = k.next) {
-                if (t.elem.compareTo(t.next.elem) > 0) {
-                    T elem = t.elem;
-                    t.elem = t.next.elem;
-                    t.next.elem = elem;
-                }
-            }
-        }
-    }
-
     @Override
     public Iterator<T> iterator() {
         return new LinkedListIterator();
@@ -219,12 +206,6 @@ public class MyLinkedList<T extends Comparable<? super T>> implements Iterable<T
         System.out.println("\n============使用iterator remove后的list===============");
         for (String s : list)
             System.out.print(s + " ");
-
-        System.out.println("\n============使用sort排序================");
-        list.sort();
-        for (String s : list)
-            System.out.print(s + " ");
-
 
     }
 }
