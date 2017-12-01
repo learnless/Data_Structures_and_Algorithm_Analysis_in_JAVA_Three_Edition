@@ -127,23 +127,16 @@ public class MyLinkedList<T extends Comparable<? super T>> implements Iterable<T
     }
 
     public void sort() {
-        //// TODO: 17.12.1  
-        //对链接进行排序，可以新建个list，然后在循环旧的list,在新list头部插入,类似插入排序
-        Node<T> newHead = new Node(null, null, null);
-        Node<T> newRear = new Node(null, newHead, null);
-        newHead.next = newRear;
-        newHead.next = head.next;
-        Node<T> p = newHead.next;
-        Node node;
-        for (Node<T> t = head.next.next; t != null; t = t.next) {
-            int comp = t.elem.compareTo(p.elem);
-            if (comp > 0) {
-
-            } else if (comp < 0) {  //当前元素最小，直接插入头节点前
-                node = t;
+        //采用冒泡排序，效率低
+        for (Node<T> t = head.next; t.next != null; t = t.next) {
+            for (Node<T> k = t; k != null; k = k.next) {
+                if (t.elem.compareTo(t.next.elem) > 0) {
+                    T elem = t.elem;
+                    t.elem = t.next.elem;
+                    t.next.elem = elem;
+                }
             }
         }
-
     }
 
     @Override
@@ -224,6 +217,11 @@ public class MyLinkedList<T extends Comparable<? super T>> implements Iterable<T
         }
 
         System.out.println("\n============使用iterator remove后的list===============");
+        for (String s : list)
+            System.out.print(s + " ");
+
+        System.out.println("\n============使用sort排序================");
+        list.sort();
         for (String s : list)
             System.out.print(s + " ");
 
